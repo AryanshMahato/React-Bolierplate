@@ -2,7 +2,7 @@ import { EnvVariableError } from '../Errors';
 
 export default class EnvConfig {
   public static getEnvironment = (): string => {
-    const ENVIRONMENT = process.env.NODE_ENV;
+    const ENVIRONMENT = process.env.REACT_APP_NODE_ENV;
 
     if (ENVIRONMENT) return ENVIRONMENT;
 
@@ -10,7 +10,7 @@ export default class EnvConfig {
   };
 
   public static getCartApiUrl = (): string => {
-    const URL = process.env.CART_API_URL;
+    const URL = process.env.REACT_APP_CART_API_URL;
 
     if (URL) return URL;
 
@@ -18,10 +18,18 @@ export default class EnvConfig {
   };
 
   public static getUserApiUrl = (): string => {
-    const URL = process.env.USER_API_URL;
+    const URL = process.env.REACT_APP_USER_API_URL;
 
     if (URL) return URL;
 
     throw new EnvVariableError('USER_API_URL');
+  };
+
+  public static getAuthenticationApiUrl = (): string => {
+    const URL = process.env.REACT_APP_AUTHENTICATION_API_URL;
+
+    if (URL) return URL;
+
+    throw new EnvVariableError('AUTHENTICATION_API_URL');
   };
 }
