@@ -2,18 +2,23 @@ import axios, { AxiosInstance } from 'axios';
 import { URL } from '../../Constants';
 
 interface config {
-  withAuthorization: boolean;
+  withAuthorization?: boolean;
 }
 
-type CartAPI = ({ withAuthorization }: config) => AxiosInstance;
+type CartAPI = (config?: config) => AxiosInstance;
 
-const cartAPI: CartAPI = ({ withAuthorization = true }) => {
-  let headers = {};
+const cartAPI: CartAPI = (config) => {
+  // Having authorization as default value
+  let headers: { authorization?: string } = {
+    authorization: 'Bearer ' + localStorage.getItem('idToken'),
+  };
 
-  if (withAuthorization) {
-    headers = {
-      authorization: 'Bearer ' + localStorage.getItem('idToken'),
-    };
+  // If withAuthorization is false then headers will be empty object
+  if (config && Object.keys(config).includes('withAuthorization')) {
+    if (!config?.withAuthorization) headers = {};
+  }
+
+  if (config?.withAuthorization) {
   }
 
   return axios.create({
