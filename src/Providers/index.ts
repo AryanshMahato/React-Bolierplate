@@ -1,3 +1,4 @@
 import EnvConfig from './EnvConfig';
+import theme from './Theme';
 
-export { EnvConfig };
+export { EnvConfig, theme };
