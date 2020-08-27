@@ -2,6 +2,8 @@ import { UserLoginValues, UserSignUpValues } from '../../types/User';
 import { loginAction, setUserErrorAction, signUpAction } from './Actions';
 import { UserService } from '../../Services';
 import { AlreadyExists } from '../../Errors/AlreadyExists';
+import { NotFound } from '../../Errors/NotFound';
+import { WrongCredentials } from '../../Errors/WrongCredentials';
 
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
@@ -11,18 +13,18 @@ export const loginUser = (loginValues: UserLoginValues) => {
         loginAction({ name: loginValues.email, email: loginValues.email }),
       );
     } catch (e) {
-      if (e.response.status === 404) {
+      if (e instanceof NotFound) {
         // User Not Found
-        dispatch(setUserErrorAction({ login: { email: 'Email not found!' } }));
+        dispatch(setUserErrorAction({ login: { email: e.message } }));
       }
 
-      if (e.response.status === 403) {
-        // User Not Found
+      if (e instanceof WrongCredentials) {
+        // Email or Password is wrong
         dispatch(
           setUserErrorAction({
             login: {
-              email: 'Email or Password did not matched',
-              password: 'Email or Password did not matched',
+              email: e.message,
+              password: e.message,
             },
           }),
         );

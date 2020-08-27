@@ -3,6 +3,8 @@ import { ApiCallFunc } from '../types/API';
 import { User, UserLoginValues, UserSignUpValues } from '../types/User';
 import { ApiValidation } from '../Errors/ApiValidation';
 import { AlreadyExists } from '../Errors/AlreadyExists';
+import { NotFound } from '../Errors/NotFound';
+import { WrongCredentials } from '../Errors/WrongCredentials';
 
 export default class UserService {
   public static signUpUser: ApiCallFunc<UserSignUpValues, User> = async (
@@ -41,7 +43,10 @@ export default class UserService {
       if (e.status === 400)
         throw new ApiValidation(e.response.data.error, e.response.data.message);
 
-      throw e;
+      if (e.response.status === 404) throw new NotFound('User not found!');
+
+      if (e.response.status === 403)
+        throw new WrongCredentials('Email or Password did not matched');
     }
   };
 }
