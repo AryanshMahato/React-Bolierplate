@@ -16,7 +16,7 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
   // Formik Property declaration
   const formik = useFormik({
     initialValues: {
-      name: '',
+      email: '',
       password: '',
     } as UserLoginValues,
     validationSchema: loginValidation,
@@ -42,13 +42,13 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
       >
         <TextField
           type={'text'}
-          aria-describedby="name"
-          label="name or Email"
+          aria-describedby="Email"
+          label="Email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={!!getError('name')}
-          helperText={getError('name')}
-          name={'name'}
+          error={!!getError('email')}
+          helperText={getError('email')}
+          name={'email'}
           inputProps={{
             'data-testid': 'name',
           }}

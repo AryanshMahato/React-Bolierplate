@@ -3,8 +3,11 @@ import { loginAction, signUpAction } from './Actions';
 import { UserService } from '../../Services';
 
 export const loginUser = (loginValues: UserLoginValues) => {
-  return (dispatch: (actions: any) => void): void => {
-    dispatch(loginAction({ name: 'Aryansh', email: 'aryansh@gmail.com' }));
+  return async (dispatch: (actions: any) => void): Promise<void> => {
+    await UserService.loginUser(loginValues);
+    dispatch(
+      loginAction({ name: loginValues.email, email: loginValues.email }),
+    );
   };
 };
 

@@ -11,7 +11,7 @@ export interface UserSignUpValues {
   confirmPassword: string;
 }
 export interface UserLoginValues {
-  name: string;
+  email: string;
   password: string;
 }
 

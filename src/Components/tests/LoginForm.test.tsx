@@ -34,13 +34,13 @@ describe('Submitting form with all required input value', function () {
       </BrowserRouter>,
     );
 
-    const nameField = getByTestId('name');
+    const emailField = getByTestId('email');
     const passwordField = getByTestId('password');
 
     const submitButton = getByTestId('submit-button');
 
     await act(async () => {
-      await userEvent.type(nameField, 'Aryansh');
+      await userEvent.type(emailField, 'aryansh@gmail.com');
       await userEvent.type(passwordField, 'Password');
 
       submitButton.click();
