@@ -1,7 +1,11 @@
 import React from 'react';
 
 const UnAuthorized: React.FC = () => {
-  return <>You are not Authorized to visit this Page</>;
+  return (
+    <div data-testid={'unauthorized'}>
+      You are not Authorized to visit this Page
+    </div>
+  );
 };
 
 export default UnAuthorized;
