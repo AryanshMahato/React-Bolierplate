@@ -4,7 +4,7 @@ import {
   UserLoginPayload,
   UserSignUpPayload,
 } from '../../types/Redux/User';
-import { ActionFunction } from '../../types/Redux';
+import { ActionFunction, ActionFunctionNoPayload } from '../../types/Redux';
 import { Actions } from '../../types/Redux/Actions';
 
 export const loginAction: ActionFunction<UserLoginPayload> = (payload) => ({
@@ -20,4 +20,9 @@ export const signUpAction: ActionFunction<UserSignUpPayload> = (payload) => ({
 export const setUserErrorAction: ActionFunction<UserErrors> = (payload) => ({
   type: Actions.SET_USER_ERROR,
   payload,
+});
+
+// In Payload specify which error you want to be removed
+export const clearUserErrors: ActionFunctionNoPayload<UserErrors> = () => ({
+  type: Actions.CLEAR_USER_ERRORS,
 });
