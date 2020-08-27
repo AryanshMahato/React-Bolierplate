@@ -1,13 +1,20 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { LoginSubmitFunction } from '../types/User';
+import { LoginSubmitFunction, UserLoginValues } from '../types/User';
 import { LoginForm } from '../Components';
+import { loginUser } from '../Store/Actions/User';
+import { connect } from 'react-redux';
 
-const Login: React.FC = () => {
-  const onSubmit: LoginSubmitFunction = (values) => {
+interface Props {
+  loginUser: LoginSubmitFunction;
+}
+
+const Login: React.FC<Props> = ({ loginUser }: Props) => {
+  const submit = (values: UserLoginValues) => {
     console.log(values);
-    return;
+    loginUser(values);
   };
+
   return (
     <Box
       display={'flex'}
@@ -16,9 +23,21 @@ const Login: React.FC = () => {
       textAlign={'center'}
       mt={'5rem'}
     >
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={submit} />
     </Box>
   );
 };
 
-export default Login;
+interface DispatchProps {
+  loginUser: LoginSubmitFunction;
+}
+
+function mapDispatchToProps(
+  dispatch: (dispatchFunction: any) => void,
+): DispatchProps {
+  return {
+    loginUser: (values) => dispatch(loginUser(values)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);
