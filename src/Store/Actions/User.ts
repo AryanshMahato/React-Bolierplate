@@ -7,8 +7,12 @@ import {
 } from './Actions';
 import { UserService } from '../../Services';
 import { AlreadyExists, NotFound, WrongCredentials } from '../../Errors';
+
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
+    //Removes idToken for no-user-conflict
+    localStorage.removeItem('idToken');
+
     try {
       const user = await UserService.loginUser(loginValues);
 
@@ -40,6 +44,9 @@ export const loginUser = (loginValues: UserLoginValues) => {
 
 export const signUpUser = (signUpValues: UserSignUpValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
+    //Removes idToken for no-user-conflict
+    localStorage.removeItem('idToken');
+
     try {
       const user = await UserService.signUpUser(signUpValues);
 

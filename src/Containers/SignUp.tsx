@@ -31,8 +31,11 @@ const SignUp: React.FC<Props> = ({
   useEffect(() => {
     const idToken = localStorage.getItem('idToken');
 
-    // Redirects to product page if already logged in
-    if (idToken) replace('/products');
+    // If token is true and name, email is stored in Redux Store
+    if (idToken) {
+      // Redirect to Products Page
+      if (name && email) replace('/products');
+    }
 
     // Redirects to Verify Page if email and name is present in Redux Store
     // Means User Sign Up Successful, Ready to Verify

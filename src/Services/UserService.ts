@@ -37,9 +37,9 @@ export default class UserService {
       }).post('/user/login', values);
 
       // Request Successful
-      if (response.status === 200) {
+      if (response.status === 201) {
         localStorage.setItem('idToken', response.data.token.access_token);
-        return response.data;
+        return response.data.user;
       }
     } catch (e) {
       if (e.status === 400)

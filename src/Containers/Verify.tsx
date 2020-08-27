@@ -34,11 +34,19 @@ const Verify: React.FC<Props> = ({
     // Calls Login User API with email value from redux
     verifyUserRedux({ password: values.password, email });
   };
+  const idToken = localStorage.getItem('idToken');
 
   useEffect(() => {
     // Redirects to login Page if name or email is not in Redux Store
     if (!name || !email) replace('/login');
-  }, [name]);
+
+    console.log({ idToken, name, email });
+    // If token is true and name, email is stored in Redux Store
+    if (idToken) {
+      // Redirect to Products Page
+      if (name && email) replace('/products');
+    }
+  }, [name, email, idToken]);
 
   return (
     <Box
