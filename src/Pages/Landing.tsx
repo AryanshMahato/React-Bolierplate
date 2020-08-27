@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const Landing: React.FC = () => {
   const classes = useStyles();
@@ -27,10 +27,20 @@ const Landing: React.FC = () => {
         Welcome to the Ecommerce Website
       </Typography>
       <Box className={classes.buttons}>
-        <Button onClick={signUpClicked} variant={'contained'} color={'primary'}>
+        <Button
+          onClick={signUpClicked}
+          variant={'contained'}
+          color={'primary'}
+          data-testid={'signUpButton'}
+        >
           Sign Up
         </Button>
-        <Button onClick={loginClicked} variant={'contained'} color={'primary'}>
+        <Button
+          onClick={loginClicked}
+          variant={'contained'}
+          color={'primary'}
+          data-testid={'loginButton'}
+        >
           Login
         </Button>
       </Box>
