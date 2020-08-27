@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { SignUpSubmitFunction } from '../types/User';
+import { LoginSubmitFunction } from '../types/User';
 import { LoginForm } from '../Components';
 
 const Login: React.FC = () => {
-  const onSubmit: SignUpSubmitFunction = (values) => {
+  const onSubmit: LoginSubmitFunction = (values) => {
     console.log(values);
     return;
   };

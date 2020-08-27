@@ -2,11 +2,11 @@ import React from 'react';
 import { FormikErrors, useFormik } from 'formik';
 import { Box, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { SignUpSubmitFunction, UserSignUpValues } from '../types/User';
+import { LoginSubmitFunction, UserLoginValues } from '../types/User';
 import { loginValidation } from '../Validations';
 
 interface Props {
-  onSubmit: SignUpSubmitFunction;
+  onSubmit: LoginSubmitFunction;
 }
 
 const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
@@ -17,13 +17,13 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
     initialValues: {
       username: '',
       password: '',
-    } as UserSignUpValues,
+    } as UserLoginValues,
     validationSchema: loginValidation,
     onSubmit,
   });
 
   // Returns error in field, returns empty string if there is no error
-  const getError = (field: keyof FormikErrors<UserSignUpValues>): string => {
+  const getError = (field: keyof FormikErrors<UserLoginValues>): string => {
     if (formik.errors[field] && formik.touched[field]) {
       return formik.errors[field] || '';
     }
