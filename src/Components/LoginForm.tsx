@@ -84,7 +84,9 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
         <Box>
           <Typography>
             {"Don't have an account? "}
-            <Link to={'/signup'}>Sign Up</Link>
+            <Link to={'/signup'} data-testid={'signup-link'}>
+              Sign Up
+            </Link>
           </Typography>
         </Box>
       </Box>

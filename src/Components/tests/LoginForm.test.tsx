@@ -4,11 +4,16 @@ import userEvent from '@testing-library/user-event';
 
 import { LoginForm } from '../index';
 import { act } from 'react-dom/test-utils';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Submitting form without any input value', function () {
   it('onSubmit should not be called', async function () {
     const onSubmit = jest.fn();
-    const { getByTestId } = render(<LoginForm onSubmit={onSubmit} />);
+    const { getByTestId } = render(
+      <BrowserRouter>
+        <LoginForm onSubmit={onSubmit} />
+      </BrowserRouter>,
+    );
 
     const submitButton = getByTestId('submit-button');
 
@@ -23,7 +28,11 @@ describe('Submitting form without any input value', function () {
 describe('Submitting form with all required input value', function () {
   it('onSubmit should be called 1 time', async function () {
     const onSubmit = jest.fn();
-    const { getByTestId } = render(<LoginForm onSubmit={onSubmit} />);
+    const { getByTestId } = render(
+      <BrowserRouter>
+        <LoginForm onSubmit={onSubmit} />
+      </BrowserRouter>,
+    );
 
     const usernameField = getByTestId('username');
     const passwordField = getByTestId('password');
@@ -38,5 +47,25 @@ describe('Submitting form with all required input value', function () {
     });
 
     expect(onSubmit).toBeCalled();
+  });
+});
+
+describe('Clicking Signup Link', function () {
+  it('should route to SignUp Page', async function () {
+    const onSubmit = jest.fn();
+
+    const { getByTestId } = render(
+      <BrowserRouter>
+        <LoginForm onSubmit={onSubmit} />
+      </BrowserRouter>,
+    );
+
+    const submitButton = getByTestId('signup-link');
+
+    await act(async () => {
+      await userEvent.click(submitButton);
+    });
+
+    expect(window.location.pathname).toBe('/signup');
   });
 });
