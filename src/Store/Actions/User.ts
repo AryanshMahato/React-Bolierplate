@@ -1,13 +1,32 @@
 import { UserLoginValues, UserSignUpValues } from '../../types/User';
-import { loginAction, signUpAction } from './Actions';
+import { loginAction, setUserErrorAction, signUpAction } from './Actions';
 import { UserService } from '../../Services';
 
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
-    await UserService.loginUser(loginValues);
-    dispatch(
-      loginAction({ name: loginValues.email, email: loginValues.email }),
-    );
+    try {
+      await UserService.loginUser(loginValues);
+      dispatch(
+        loginAction({ name: loginValues.email, email: loginValues.email }),
+      );
+    } catch (e) {
+      if (e.response.status === 404) {
+        // User Not Found
+        dispatch(setUserErrorAction({ login: { email: 'Email not found!' } }));
+      }
+
+      if (e.response.status === 403) {
+        // User Not Found
+        dispatch(
+          setUserErrorAction({
+            login: {
+              email: 'Email or Password did not matched',
+              password: 'Email or Password did not matched',
+            },
+          }),
+        );
+      }
+    }
   };
 };
 

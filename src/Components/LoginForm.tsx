@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormikErrors, useFormik } from 'formik';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { LoginSubmitFunction, UserLoginValues } from '../types/User';
 import { loginValidation } from '../Validations';
 import { Link } from 'react-router-dom';
+import { UserErrors } from '../types/Redux/User';
 
 interface Props {
   onSubmit: LoginSubmitFunction;
+  errors: UserErrors;
 }
 
-const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
+const LoginForm: React.FC<Props> = ({ onSubmit, errors }: Props) => {
   const classes = useStyles();
 
   // Formik Property declaration
@@ -30,6 +32,12 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
     }
     return '';
   };
+
+  useEffect(() => {
+    formik.setErrors({
+      ...errors.login,
+    });
+  }, [errors]);
 
   return (
     <form noValidate onSubmit={formik.handleSubmit}>

@@ -4,14 +4,20 @@ import { LoginSubmitFunction } from '../types/User';
 import { LoginForm } from '../Components';
 import { loginUser } from '../Store/Actions/User';
 import { connect } from 'react-redux';
+import { ReduxState } from '../types/Redux';
+import { UserErrors } from '../types/Redux/User';
 
 interface DispatchProps {
   loginUser: LoginSubmitFunction;
 }
 
-type Props = DispatchProps;
+interface StateProps {
+  errors: UserErrors;
+}
 
-const Login: React.FC<Props> = ({ loginUser }: Props) => {
+type Props = DispatchProps & StateProps;
+
+const Login: React.FC<Props> = ({ loginUser, errors }: Props) => {
   return (
     <Box
       display={'flex'}
@@ -20,10 +26,16 @@ const Login: React.FC<Props> = ({ loginUser }: Props) => {
       textAlign={'center'}
       mt={'5rem'}
     >
-      <LoginForm onSubmit={loginUser} />
+      <LoginForm onSubmit={loginUser} errors={errors} />
     </Box>
   );
 };
+
+function mapStateToProps(state: ReduxState): StateProps {
+  return {
+    errors: state.user.errors,
+  };
+}
 
 function mapDispatchToProps(
   dispatch: (dispatchFunction: any) => void,
@@ -33,4 +45,4 @@ function mapDispatchToProps(
   };
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

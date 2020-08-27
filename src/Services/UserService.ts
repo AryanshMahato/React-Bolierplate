@@ -36,6 +36,8 @@ export default class UserService {
     } catch (e) {
       if (e.status === 400)
         throw new ApiValidation(e.response.data.error, e.response.data.message);
+
+      throw e;
     }
   };
 }
