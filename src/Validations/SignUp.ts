@@ -3,8 +3,8 @@ import * as yup from 'yup';
 export default yup.object({
   name: yup
     .string()
-    .min(3, 'name must have at least 3 characters')
-    .required('name is Required'),
+    .min(3, 'Name must have at least 3 characters')
+    .required('Name is Required'),
   email: yup.string().email('Not a valid Email').required('Email is Required'),
   password: yup
     .string()

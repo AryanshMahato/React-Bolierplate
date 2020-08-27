@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormikErrors, useFormik } from 'formik';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SignUpSubmitFunction, UserSignUpValues } from '../types/User';
 import { signUpValidation } from '../Validations';
 import { Link } from 'react-router-dom';
+import { UserErrors } from '../types/Redux/User';
 
 interface Props {
   onSubmit: SignUpSubmitFunction;
+  errors: UserErrors;
 }
 
-const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
+const SignUpForm: React.FC<Props> = ({ onSubmit, errors }: Props) => {
   const classes = useStyles();
 
   // Formik Property declaration
@@ -32,6 +34,12 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
     }
     return '';
   };
+
+  useEffect(() => {
+    formik.setErrors({
+      ...errors.signUp,
+    });
+  }, [errors]);
 
   return (
     <form noValidate onSubmit={formik.handleSubmit}>

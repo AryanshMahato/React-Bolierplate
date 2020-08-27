@@ -1,6 +1,7 @@
 import { UserLoginValues, UserSignUpValues } from '../../types/User';
 import { loginAction, setUserErrorAction, signUpAction } from './Actions';
 import { UserService } from '../../Services';
+import { AlreadyExists } from '../../Errors/AlreadyExists';
 
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
@@ -36,7 +37,16 @@ export const signUpUser = (signUpValues: UserSignUpValues) => {
       const user = await UserService.signUpUser(signUpValues);
       if (user) dispatch(signUpAction({ name: user.name, email: user.email }));
     } catch (e) {
-      // TODO: Add SignUp Failed Handler
+      console.log(e);
+      console.log(e instanceof AlreadyExists);
+      if (e instanceof AlreadyExists)
+        dispatch(
+          setUserErrorAction({
+            signUp: {
+              email: e.message,
+            },
+          }),
+        );
     }
   };
 };

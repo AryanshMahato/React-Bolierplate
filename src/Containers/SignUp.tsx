@@ -4,14 +4,20 @@ import { Box } from '@material-ui/core';
 import { SignUpSubmitFunction } from '../types/User';
 import { signUpUser } from '../Store/Actions/User';
 import { connect } from 'react-redux';
+import { UserErrors } from '../types/Redux/User';
+import { ReduxState } from '../types/Redux';
 
-interface DispatchPros {
+interface DispatchProps {
   signUpUser: SignUpSubmitFunction;
 }
 
-type Props = DispatchPros;
+interface StateProps {
+  errors: UserErrors;
+}
 
-const SignUp: React.FC<Props> = ({ signUpUser }: Props) => {
+type Props = DispatchProps & StateProps;
+
+const SignUp: React.FC<Props> = ({ signUpUser, errors }: Props) => {
   return (
     <Box
       display={'flex'}
@@ -20,15 +26,21 @@ const SignUp: React.FC<Props> = ({ signUpUser }: Props) => {
       textAlign={'center'}
       mt={'5rem'}
     >
-      <SignUpForm onSubmit={signUpUser} />
+      <SignUpForm onSubmit={signUpUser} errors={errors} />
     </Box>
   );
 };
 
-function mapDispatchToProps(dispatch: (action: any) => void): DispatchPros {
+function mapStateToProps(state: ReduxState): StateProps {
+  return {
+    errors: state.user.errors,
+  };
+}
+
+function mapDispatchToProps(dispatch: (action: any) => void): DispatchProps {
   return {
     signUpUser: (values) => dispatch(signUpUser(values)),
   };
 }
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

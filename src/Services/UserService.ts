@@ -2,6 +2,7 @@ import { userAPI } from '../Utils';
 import { ApiCallFunc } from '../types/API';
 import { User, UserLoginValues, UserSignUpValues } from '../types/User';
 import { ApiValidation } from '../Errors/ApiValidation';
+import { AlreadyExists } from '../Errors/AlreadyExists';
 
 export default class UserService {
   public static signUpUser: ApiCallFunc<UserSignUpValues, User> = async (
@@ -17,6 +18,9 @@ export default class UserService {
     } catch (e) {
       if (e.status === 400)
         throw new ApiValidation(e.response.data.error, e.response.data.message);
+
+      if (e.response.status === 409)
+        throw new AlreadyExists('Email already exists');
     }
   };
 
