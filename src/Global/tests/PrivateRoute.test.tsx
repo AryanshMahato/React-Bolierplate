@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { PrivateRoute } from '../index';
 import { BrowserRouter } from 'react-router-dom';
 
 const MockComponent = jest.fn(() => <div>Mock Component</div>);
-
-afterEach(cleanup);
 
 describe('<PrivateRoute />', function () {
   describe('Rendering Component while being unauthorized', function () {
