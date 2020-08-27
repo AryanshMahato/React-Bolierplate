@@ -1,7 +1,7 @@
 import { Actions } from './Actions';
 
 export interface UserState {
-  username: string;
+  name: string;
   email: string;
 }
 
@@ -16,11 +16,11 @@ export type UserReducer = (
 // PAYLOAD TYPES
 
 export interface UserLoginPayload {
-  username: string;
+  name: string;
   email: string;
 }
 
 export interface UserSignUpPayload {
-  username: string;
+  name: string;
   email: string;
 }

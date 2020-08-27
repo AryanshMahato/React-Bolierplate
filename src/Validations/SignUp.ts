@@ -1,10 +1,10 @@
 import * as yup from 'yup';
 
 export default yup.object({
-  username: yup
+  name: yup
     .string()
-    .min(3, 'Username must have at least 3 characters')
-    .required('Username is Required'),
+    .min(3, 'name must have at least 3 characters')
+    .required('name is Required'),
   email: yup.string().email('Not a valid Email').required('Email is Required'),
   password: yup
     .string()

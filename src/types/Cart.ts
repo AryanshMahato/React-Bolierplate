@@ -2,7 +2,7 @@ import { Product } from './Product';
 
 export interface Cart {
   id: string;
-  username: string;
+  name: string;
 
   products?: Product[];
 }

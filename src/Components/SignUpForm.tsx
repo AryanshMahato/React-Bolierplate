@@ -17,7 +17,7 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      username: '',
+      name: '',
       password: '',
       confirmPassword: '',
     } as UserSignUpValues,
@@ -44,15 +44,15 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
       >
         <TextField
           type={'text'}
-          aria-describedby="Username"
-          label="Username"
+          aria-describedby="name"
+          label="Name"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={!!getError('username')}
-          helperText={getError('username')}
-          name={'username'}
+          error={!!getError('name')}
+          helperText={getError('name')}
+          name={'name'}
           inputProps={{
-            'data-testid': 'username',
+            'data-testid': 'name',
           }}
           variant={'outlined'}
         />

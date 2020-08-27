@@ -3,7 +3,7 @@ import { Actions } from '../../types/Redux/Actions';
 
 const initialState = {
   email: '',
-  username: '',
+  name: '',
 } as UserState;
 
 export const userReducer: UserReducer = (state = initialState, action) => {
@@ -12,13 +12,13 @@ export const userReducer: UserReducer = (state = initialState, action) => {
       return {
         ...state,
         email: action.payload.email,
-        username: action.payload.username,
+        name: action.payload.name,
       };
     case Actions.SIGN_UP:
       return {
         ...state,
         email: action.payload.email,
-        username: action.payload.username,
+        name: action.payload.name,
       };
     default:
       return { ...initialState };

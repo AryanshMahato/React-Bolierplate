@@ -34,7 +34,7 @@ describe('Submitting form with all required input value', function () {
       </BrowserRouter>,
     );
 
-    const usernameField = getByTestId('username');
+    const nameField = getByTestId('name');
     const emailField = getByTestId('email');
     const passwordField = getByTestId('password');
     const confirmPasswordField = getByTestId('confirmPassword');
@@ -42,7 +42,7 @@ describe('Submitting form with all required input value', function () {
     const submitButton = getByTestId('submit-button');
 
     await act(async () => {
-      await userEvent.type(usernameField, 'Aryansh');
+      await userEvent.type(nameField, 'Aryansh');
       await userEvent.type(emailField, 'aryansh@gmail.com');
       await userEvent.type(passwordField, 'Password');
       await userEvent.type(confirmPasswordField, 'Password');

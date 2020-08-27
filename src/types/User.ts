@@ -6,12 +6,12 @@ export interface User {
 
 export interface UserSignUpValues {
   email: string;
-  username: string;
+  name: string;
   password: string;
   confirmPassword: string;
 }
 export interface UserLoginValues {
-  username: string;
+  name: string;
   password: string;
 }
 

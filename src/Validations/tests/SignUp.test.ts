@@ -4,8 +4,8 @@ import { UserSignUpValues } from '../../types/User';
 /*
  * TOTAL POSSIBLE ERRORS ON NO INPUT
  *      [
- *          'Username must have at least 3 characters',
- *          'Username is Required',
+ *          'name must have at least 3 characters',
+ *          'name is Required',
  *          'Email is Required',
  *          'Password must have at least 5 characters',
  *          'Password is Required',
@@ -18,7 +18,7 @@ describe('Every Field is empty', function () {
     try {
       await signUpValidation.validate(
         {
-          username: '',
+          name: '',
           email: '',
           password: '',
           confirmPassword: '',
@@ -34,7 +34,7 @@ describe('Every Field is empty', function () {
 describe('Every Field is filled with same password', function () {
   it('should not throw any error', async function () {
     const inputValues = {
-      username: 'Aryansh',
+      name: 'Aryansh',
       email: 'aryansh@gmail.com',
       password: 'Password',
       confirmPassword: 'Password',
@@ -51,7 +51,7 @@ describe('Every Field is filled with same password', function () {
 describe('Every Field is filled with different password', function () {
   it('should not throw different password error', async function () {
     const inputValues = {
-      username: 'Aryansh',
+      name: 'Aryansh',
       email: 'aryansh@gmail.com',
       password: 'Password',
       confirmPassword: 'DifferentPassword',
