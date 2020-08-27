@@ -1,6 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Landing, LoginPage, Products, SignUp, UnAuthorized } from './Pages';
+import {
+  Landing,
+  LoginPage,
+  Products,
+  SignUp,
+  UnAuthorized,
+  Verify,
+} from './Pages';
 import { PrivateRoute } from './Global';
 
 const Routes: React.FC = () => {
@@ -10,7 +17,8 @@ const Routes: React.FC = () => {
       <Route exact path={'/signup'} component={SignUp} />
       <Route exact path={'/login'} component={LoginPage} />
       <PrivateRoute exact path={'/products'} component={Products} />
-      <PrivateRoute exact path={'/unauthorized'} component={UnAuthorized} />
+      <Route exact path={'/verify'} component={Verify} />
+      <Route exact path={'/unauthorized'} component={UnAuthorized} />
     </Switch>
   );
 };

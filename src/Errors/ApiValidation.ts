@@ -1,4 +1,4 @@
-export class ApiValidation extends Error {
+export default class ApiValidation extends Error {
   message: string;
   details: any;
 

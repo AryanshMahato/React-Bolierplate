@@ -6,19 +6,17 @@ import {
   signUpAction,
 } from './Actions';
 import { UserService } from '../../Services';
-import { AlreadyExists } from '../../Errors/AlreadyExists';
-import { NotFound } from '../../Errors/NotFound';
-import { WrongCredentials } from '../../Errors/WrongCredentials';
-
+import { AlreadyExists, NotFound, WrongCredentials } from '../../Errors';
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     try {
-      await UserService.loginUser(loginValues);
-      dispatch(
-        loginAction({ name: loginValues.email, email: loginValues.email }),
-      );
+      const user = await UserService.loginUser(loginValues);
 
-      dispatch(clearUserErrors());
+      if (user) {
+        dispatch(loginAction({ name: user.name, email: user.email }));
+
+        dispatch(clearUserErrors());
+      }
     } catch (e) {
       if (e instanceof NotFound) {
         // User Not Found

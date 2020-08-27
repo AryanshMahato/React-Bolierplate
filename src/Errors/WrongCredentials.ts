@@ -1,4 +1,4 @@
-export class WrongCredentials extends Error {
+export default class WrongCredentials extends Error {
   message: string;
   details: any;
 

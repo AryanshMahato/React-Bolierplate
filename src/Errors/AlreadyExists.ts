@@ -1,4 +1,4 @@
-export class AlreadyExists extends Error {
+export default class AlreadyExists extends Error {
   message: string;
   details: any;
 

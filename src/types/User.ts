@@ -15,6 +15,14 @@ export interface UserLoginValues {
   password: string;
 }
 
+export interface UserVerificationValues {
+  password: string;
+}
+
 export type SignUpSubmitFunction = (values: UserSignUpValues) => void;
 
 export type LoginSubmitFunction = (values: UserLoginValues) => void;
+
+export type VerificationSubmitFunction = (
+  values: UserVerificationValues,
+) => void;

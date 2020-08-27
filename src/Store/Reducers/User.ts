@@ -42,6 +42,6 @@ export const userReducer: UserReducer = (state = initialState, action) => {
         errors: { ...initialState.errors },
       };
     default:
-      return { ...initialState };
+      return { ...state };
   }
 };
