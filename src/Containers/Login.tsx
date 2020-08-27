@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { LoginSubmitFunction, UserLoginValues } from '../types/User';
+import { LoginSubmitFunction } from '../types/User';
 import { LoginForm } from '../Components';
 import { loginUser } from '../Store/Actions/User';
 import { connect } from 'react-redux';
@@ -10,11 +10,6 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({ loginUser }: Props) => {
-  const submit = (values: UserLoginValues) => {
-    console.log(values);
-    loginUser(values);
-  };
-
   return (
     <Box
       display={'flex'}
@@ -23,7 +18,7 @@ const Login: React.FC<Props> = ({ loginUser }: Props) => {
       textAlign={'center'}
       mt={'5rem'}
     >
-      <LoginForm onSubmit={submit} />
+      <LoginForm onSubmit={loginUser} />
     </Box>
   );
 };

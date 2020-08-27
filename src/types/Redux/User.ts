@@ -1,5 +1,4 @@
-// Generic Type of all Action Functions
-import { ActionType } from '../ActionType';
+import { Actions } from './Actions';
 
 export interface UserState {
   username: string;
@@ -9,7 +8,7 @@ export interface UserState {
 export type UserReducer = (
   state: UserState,
   action: {
-    type: ActionType;
+    type: Actions;
     payload: UserLoginPayload | UserSignUpPayload;
   },
 ) => UserState;

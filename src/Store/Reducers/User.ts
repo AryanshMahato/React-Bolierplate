@@ -1,5 +1,5 @@
-import { UserState, UserReducer } from '../../types/Redux/User';
-// import { ActionType } from '../../types/Redux/ActionType';
+import { UserReducer, UserState } from '../../types/Redux/User';
+import { Actions } from '../../types/Redux/Actions';
 
 const initialState = {
   email: '',
@@ -8,18 +8,18 @@ const initialState = {
 
 export const userReducer: UserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case Actions.LOGIN:
       return {
         ...state,
         email: action.payload.email,
         username: action.payload.username,
       };
-    // case ActionType.SIGN_UP:
-    //   return {
-    //     email: action.payload.email,
-    //     username: action.payload.username,
-    //     ...state,
-    //   };
+    case Actions.SIGN_UP:
+      return {
+        ...state,
+        email: action.payload.email,
+        username: action.payload.username,
+      };
     default:
       return { ...initialState };
   }
