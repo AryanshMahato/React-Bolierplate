@@ -1,9 +1,10 @@
 import React from 'react';
 import { FormikErrors, useFormik } from 'formik';
-import { Box, Button, TextField } from '@material-ui/core';
+import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { LoginSubmitFunction, UserLoginValues } from '../types/User';
 import { loginValidation } from '../Validations';
+import { Link } from 'react-router-dom';
 
 interface Props {
   onSubmit: LoginSubmitFunction;
@@ -79,6 +80,13 @@ const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
             Login
           </Button>
         </Box>
+
+        <Box>
+          <Typography>
+            {"Don't have an account? "}
+            <Link to={'/signup'}>Sign Up</Link>
+          </Typography>
+        </Box>
       </Box>
     </form>
   );
@@ -88,6 +96,9 @@ const useStyles = makeStyles((theme) => ({
   form: {
     '&>*': {
       marginTop: theme.spacing(3),
+    },
+    '& a': {
+      fontWeight: 'bold',
     },
   },
 }));
