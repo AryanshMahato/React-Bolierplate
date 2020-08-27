@@ -1,7 +1,12 @@
 import React from 'react';
+import { Login } from '../Containers';
 
-const Login: React.FC = () => {
-  return <></>;
+const LoginPage: React.FC = () => {
+  return (
+    <>
+      <Login />
+    </>
+  );
 };
 
-export default Login;
+export default LoginPage;
