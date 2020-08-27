@@ -50,6 +50,9 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
           error={!!getError('username')}
           helperText={getError('username')}
           name={'username'}
+          inputProps={{
+            'data-testid': 'username',
+          }}
           variant={'outlined'}
         />
         <TextField
@@ -61,6 +64,9 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
           error={!!getError('email')}
           helperText={getError('email')}
           name={'email'}
+          inputProps={{
+            'data-testid': 'email',
+          }}
           variant={'outlined'}
         />
         <TextField
@@ -72,6 +78,9 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
           error={!!getError('password')}
           helperText={getError('password')}
           name={'password'}
+          inputProps={{
+            'data-testid': 'password',
+          }}
           variant={'outlined'}
         />
         <TextField
@@ -83,10 +92,18 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
           error={!!getError('confirmPassword')}
           helperText={getError('confirmPassword')}
           name={'confirmPassword'}
+          inputProps={{
+            'data-testid': 'confirmPassword',
+          }}
           variant={'outlined'}
         />
         <Box mt={'2rem'}>
-          <Button type={'submit'} variant={'contained'} color={'primary'}>
+          <Button
+            type={'submit'}
+            variant={'contained'}
+            color={'primary'}
+            data-testid={'submit-button'}
+          >
             Sign Up
           </Button>
         </Box>
