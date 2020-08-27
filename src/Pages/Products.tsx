@@ -1,7 +1,12 @@
 import React from 'react';
+import { Products } from '../Containers';
 
-const Products: React.FC = () => {
-  return <>Products Page</>;
+const ProductsPage: React.FC = () => {
+  return (
+    <>
+      <Products />
+    </>
+  );
 };
 
-export default Products;
+export default ProductsPage;
