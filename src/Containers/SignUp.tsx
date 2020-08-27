@@ -2,12 +2,16 @@ import React from 'react';
 import { SignUpForm } from '../Components';
 import { Box } from '@material-ui/core';
 import { SignUpSubmitFunction } from '../types/User';
+import { signUpUser } from '../Store/Actions/User';
+import { connect } from 'react-redux';
 
-const SignUp: React.FC = () => {
-  const onSubmit: SignUpSubmitFunction = (values) => {
-    console.log(values);
-    return;
-  };
+interface DispatchPros {
+  signUpUser: SignUpSubmitFunction;
+}
+
+type Props = DispatchPros;
+
+const SignUp: React.FC<Props> = ({ signUpUser }: Props) => {
   return (
     <Box
       display={'flex'}
@@ -16,9 +20,15 @@ const SignUp: React.FC = () => {
       textAlign={'center'}
       mt={'5rem'}
     >
-      <SignUpForm onSubmit={onSubmit} />
+      <SignUpForm onSubmit={signUpUser} />
     </Box>
   );
 };
 
-export default SignUp;
+function mapDispatchToProps(dispatch: (action: any) => void): DispatchPros {
+  return {
+    signUpUser: (values) => dispatch(signUpUser(values)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignUp);

@@ -5,9 +5,11 @@ import { LoginForm } from '../Components';
 import { loginUser } from '../Store/Actions/User';
 import { connect } from 'react-redux';
 
-interface Props {
+interface DispatchProps {
   loginUser: LoginSubmitFunction;
 }
+
+type Props = DispatchProps;
 
 const Login: React.FC<Props> = ({ loginUser }: Props) => {
   return (
@@ -22,10 +24,6 @@ const Login: React.FC<Props> = ({ loginUser }: Props) => {
     </Box>
   );
 };
-
-interface DispatchProps {
-  loginUser: LoginSubmitFunction;
-}
 
 function mapDispatchToProps(
   dispatch: (dispatchFunction: any) => void,
