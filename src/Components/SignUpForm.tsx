@@ -1,8 +1,9 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { FormikErrors, useFormik } from 'formik';
 import { Box, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SignUpSubmitFunction, UserSignUpValues } from '../types/User';
+import { signUpValidation } from '../Validations';
 
 interface Props {
   onSubmit: SignUpSubmitFunction;
@@ -19,8 +20,17 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
       password: '',
       confirmPassword: '',
     } as UserSignUpValues,
+    validationSchema: signUpValidation,
     onSubmit,
   });
+
+  // Returns error in field, returns empty string if there is no error
+  const getError = (field: keyof FormikErrors<UserSignUpValues>): string => {
+    if (formik.errors[field] && formik.touched[field]) {
+      return formik.errors[field] || '';
+    }
+    return '';
+  };
 
   return (
     <form noValidate onSubmit={formik.handleSubmit}>
@@ -32,38 +42,46 @@ const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
         className={classes.form}
       >
         <TextField
-          id="username"
           type={'text'}
           aria-describedby="Username"
           label="Username"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!getError('username')}
+          helperText={getError('username')}
           name={'username'}
           variant={'outlined'}
         />
         <TextField
-          id="email"
           type={'email'}
           aria-describedby="Email"
           label="Email"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!getError('email')}
+          helperText={getError('email')}
           name={'email'}
           variant={'outlined'}
         />
         <TextField
-          id="password"
           type={'password'}
           aria-describedby="Password"
           label="Password"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!getError('password')}
+          helperText={getError('password')}
           name={'password'}
           variant={'outlined'}
         />
         <TextField
-          id="confirmPassword"
-          type={'confirmPassword'}
+          type={'password'}
           aria-describedby="Confirm Password"
           label="Confirm Password"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!getError('confirmPassword')}
+          helperText={getError('confirmPassword')}
           name={'confirmPassword'}
           variant={'outlined'}
         />
