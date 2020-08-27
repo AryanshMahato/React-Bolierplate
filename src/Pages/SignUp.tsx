@@ -1,7 +1,12 @@
 import React from 'react';
+import { SignUp } from '../Containers';
 
-const SignUp: React.FC = () => {
-  return <></>;
+const SignUpPage: React.FC = () => {
+  return (
+    <>
+      <SignUp />
+    </>
+  );
 };
 
-export default SignUp;
+export default SignUpPage;
