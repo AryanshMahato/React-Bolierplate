@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -7,35 +7,22 @@ import {
   CardContent,
   CardMedia,
   createStyles,
-  Input,
   Theme,
   Typography,
 } from '@material-ui/core';
-import { PRODUCTS } from '../Constants';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../Store/Actions/Cart';
+import { removeFromCart } from '../Store/Actions/Cart';
+import { AddCircle, RemoveCircle } from '@material-ui/icons';
+import { Product } from '../types/Product';
 
 interface Props {
-  id: number;
+  product: Product;
 }
 
-const CartProduct: React.FC<Props> = ({ id }: Props) => {
+const CartProduct: React.FC<Props> = ({ product }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
-  const product = PRODUCTS.find((product) => product.id === +id);
-
-  const [quantity, setQuantity] = useState<number | null>(1);
-
-  const quantityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    if (+value > 0) {
-      dispatch(addToCart(product!.id));
-      setQuantity(+value);
-    }
-  };
 
   const removeClicked = () => {
     dispatch(removeFromCart(product!.id, true));
@@ -75,17 +62,16 @@ const CartProduct: React.FC<Props> = ({ id }: Props) => {
         </Typography>
       </CardContent>
       <CardActions style={{ width: '300px' }}>
-        <Input
-          type={'number'}
-          defaultValue={1}
-          className={classes.input}
-          onChange={quantityChange}
-          value={quantity}
-        />
+        <Box display={'flex'} alignItems={'center'}>
+          <AddCircle />
+          <Typography className={classes.quantity}>1</Typography>
+          <RemoveCircle />
+        </Box>
         <Button
           disableElevation
           variant={'contained'}
           style={{ marginLeft: 'auto' }}
+          color={'secondary'}
           onClick={removeClicked}
         >
           Remove
@@ -112,6 +98,10 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       maxWidth: 48,
       marginLeft: 16,
+    },
+    quantity: {
+      marginLeft: 4,
+      marginRight: 4,
     },
   }),
 );

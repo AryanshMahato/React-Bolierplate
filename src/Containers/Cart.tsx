@@ -18,7 +18,7 @@ const Cart: React.FC<Props> = ({ closePopper }: Props) => {
     return (
       <>
         {products.map((product) => (
-          <CartProduct id={product?.id} key={product?.id} />
+          <CartProduct product={product!} key={product?.id} />
         ))}
       </>
     );

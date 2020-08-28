@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   description: string;
   imagePath: string;
+  quantity: number;
 }
 
 export type AddToCartFunction = (productId: number) => void;
