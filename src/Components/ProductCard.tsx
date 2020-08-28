@@ -23,6 +23,7 @@ const ProductCard: React.FC<Props> = ({ product, addToCart }: Props) => {
   return (
     <Grid item>
       <Card className={classes.root}>
+        {/* Product Image */}
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -30,6 +31,7 @@ const ProductCard: React.FC<Props> = ({ product, addToCart }: Props) => {
           image={product.imagePath}
           title="Contemplative Reptile"
         />
+        {/* Product Content */}
         <CardContent>
           <Box display={'flex'} alignItems={'center'}>
             <Typography gutterBottom variant="h5" component="h2">

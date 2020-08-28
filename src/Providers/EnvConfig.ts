@@ -1,5 +1,6 @@
 import { EnvVariableError } from '../Errors';
 
+// Provides Environment variables
 export default class EnvConfig {
   public static getEnvironment = (): string => {
     const ENVIRONMENT = process.env.REACT_APP_NODE_ENV;

@@ -1,3 +1,4 @@
+// Item already exists on server
 export default class AlreadyExists extends Error {
   message: string;
   details: any;

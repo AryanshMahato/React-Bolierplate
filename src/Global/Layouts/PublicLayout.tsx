@@ -7,6 +7,7 @@ interface Props {
   hideNavbar?: boolean;
 }
 
+// Layout for all the Public Pages
 const PublicLayout: React.FC<Props> = ({ children, hideNavbar }: Props) => {
   return (
     <Layout>

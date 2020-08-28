@@ -9,6 +9,7 @@ interface Props {
   children: React.ReactNode;
 }
 
+// Provides Material UI Custom theme to all components
 const ThemeProvider: React.FC<Props> = ({ children }: Props) => {
   return (
     <ThemeProviderMUI theme={theme}>

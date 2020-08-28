@@ -25,6 +25,7 @@ interface DispatchProps {
 
 type Props = DispatchProps;
 
+// Product Page Navbar
 const ProductsNavbar: React.FC<Props> = ({ logOut }: Props) => {
   const classes = useStyles();
   const { push } = useHistory();
@@ -92,6 +93,7 @@ const ProductsNavbar: React.FC<Props> = ({ logOut }: Props) => {
           <IconButton onClick={handleCart} color={'inherit'}>
             <ShoppingCart />
           </IconButton>
+          {/* Shopping Cart */}
           <Popover
             id={'cart-popover'}
             open={cartOpen}

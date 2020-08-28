@@ -6,6 +6,7 @@ interface Props {
   children: React.ReactNode;
 }
 
+// Layout for Product Page with Navbar
 const ProductsLayout: React.FC<Props> = ({ children }: Props) => {
   return (
     <Layout>

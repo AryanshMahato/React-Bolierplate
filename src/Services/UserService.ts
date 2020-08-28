@@ -9,7 +9,9 @@ import {
   TokenExpired,
 } from '../Errors';
 
+// API calls for user API
 export default class UserService {
+  // Register User on Server
   public static signUpUser: ApiCallFunc<UserSignUpValues, User> = async (
     values,
   ) => {
@@ -32,6 +34,7 @@ export default class UserService {
     }
   };
 
+  // Authenticate User
   public static loginUser: ApiCallFunc<UserLoginValues, User> = async (
     values,
   ) => {
@@ -57,6 +60,7 @@ export default class UserService {
     }
   };
 
+  // Fetch User data from server
   public static getUser: ApiCallFunc<string, User> = async (email) => {
     try {
       const response = await userAPI({

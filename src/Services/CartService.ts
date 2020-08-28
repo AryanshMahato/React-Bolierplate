@@ -3,7 +3,9 @@ import { AddToCartValues, Cart, RemoveFromCartValues } from '../types/Cart';
 import { cartAPI } from '../Utils';
 import { ApiValidation, NotFound, TokenExpired } from '../Errors';
 
-export default class UserService {
+// API calls for cart API
+export default class CartService {
+  // Fetch cart of the user from API
   public static getCart: ApiCallFunc<string, Cart> = async (email: string) => {
     try {
       const response = await cartAPI({
@@ -24,6 +26,7 @@ export default class UserService {
     }
   };
 
+  // Add items to cart
   public static addToCart: ApiCallFunc<AddToCartValues, Cart> = async (
     values,
   ) => {
@@ -45,6 +48,8 @@ export default class UserService {
       throw new TokenExpired('Token Expired!');
     }
   };
+
+  // Remove items from cart
   public static removeFromCart: ApiCallFunc<
     RemoveFromCartValues,
     Cart

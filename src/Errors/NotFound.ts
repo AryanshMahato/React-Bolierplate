@@ -1,3 +1,4 @@
+// Field not found, thrown usually when field is not present on server
 export default class NotFound extends Error {
   message: string;
   details: any;

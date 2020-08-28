@@ -24,20 +24,24 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  // Removes whole Item
   const removeAllClicked = () => {
     dispatch(removeFromCart(product.id, true));
   };
 
+  // Increment the quantity
   const addClicked = () => {
     dispatch(addToCart(product.id));
   };
 
+  // Increment the quantity
   const removeClicked = () => {
     dispatch(removeFromCart(product.id));
   };
 
   return (
     <Card className={classes.root}>
+      {/* Product Image */}
       <CardMedia
         component="img"
         alt={product.title}
@@ -46,6 +50,7 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
         image={product?.imagePath}
         title={product.title}
       />
+      {/* Content of whole Product */}
       <CardContent className={classes.card}>
         <Box
           display={'flex'}
@@ -70,6 +75,7 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
         </Typography>
       </CardContent>
       <CardActions style={{ width: '300px' }}>
+        {/* Action buttons to increment or decrement item's quantity */}
         <Box display={'flex'} alignItems={'center'}>
           <AddCircle onClick={addClicked} className={classes.actionIcons} />
           <Typography className={classes.quantity}>
@@ -80,6 +86,7 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
             className={classes.actionIcons}
           />
         </Box>
+        {/* Remove button to remove whole item */}
         <Button
           disableElevation
           variant={'contained'}

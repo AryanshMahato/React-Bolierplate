@@ -10,6 +10,7 @@ import {
 } from './Actions';
 import { NotFound, TokenExpired } from '../../Errors';
 
+// Dispatch function to get cart
 export const getCart = () => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     try {
@@ -36,6 +37,7 @@ export const getCart = () => {
   };
 };
 
+// Dispatch function to add items in cart
 export const addToCart = (productId: number) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     try {
@@ -65,6 +67,7 @@ export const addToCart = (productId: number) => {
   };
 };
 
+// Dispatch function to remove item from cart
 export const removeFromCart = (productId: number, total?: boolean) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     try {

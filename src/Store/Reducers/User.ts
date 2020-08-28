@@ -20,6 +20,7 @@ const initialState = {
   },
 } as UserState;
 
+// Reducer for User State
 export const userReducer: UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.LOGIN:

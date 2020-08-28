@@ -25,6 +25,7 @@ const Cart: React.FC<Props> = ({ closePopper }: Props) => {
     total += product.price * product.quantity;
   };
 
+  // Render all products if present in cart
   if (products.length)
     return (
       <>

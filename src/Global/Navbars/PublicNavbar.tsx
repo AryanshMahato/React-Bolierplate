@@ -10,6 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 
+// Navbar for all the Public Pages
 const PublicNavbar: React.FC = () => {
   const classes = useStyles();
   const { push } = useHistory();

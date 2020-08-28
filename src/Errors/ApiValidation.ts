@@ -1,3 +1,4 @@
+// Required fields are not sent to the server
 export default class ApiValidation extends Error {
   message: string;
   details: any;

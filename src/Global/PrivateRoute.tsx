@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, RouteProps } from 'react-router';
-import { UnAuthorized } from '../Pages';
+import { Redirect, Route, RouteProps } from 'react-router';
 
 // If Authorized then shows Component else shows UnAuthorized Page
 const PrivateRoute: React.FC<RouteProps> = (props) => {
@@ -10,7 +9,7 @@ const PrivateRoute: React.FC<RouteProps> = (props) => {
   if (idToken) return <Route {...props} />;
 
   // Not Authorized
-  return <UnAuthorized />;
+  return <Redirect to={'/unauthorized'} />;
 };
 
 export default PrivateRoute;

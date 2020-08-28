@@ -18,6 +18,7 @@ import {
   WrongCredentials,
 } from '../../Errors';
 
+// Dispatch function to authenticate user
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     //Removes idToken for no-user-conflict
@@ -58,6 +59,7 @@ export const loginUser = (loginValues: UserLoginValues) => {
   };
 };
 
+// Dispatch function to register user
 export const signUpUser = (signUpValues: UserSignUpValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     //Removes idToken for no-user-conflict
@@ -84,6 +86,7 @@ export const signUpUser = (signUpValues: UserSignUpValues) => {
   };
 };
 
+// Dispatch Function to log out user
 export const logOutUser = () => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     localStorage.clear();
@@ -93,6 +96,7 @@ export const logOutUser = () => {
   };
 };
 
+// Dispatch Function to fetch user data from server
 export const getUser = () => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
     try {

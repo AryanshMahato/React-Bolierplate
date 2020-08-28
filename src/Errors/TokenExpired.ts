@@ -1,3 +1,4 @@
+// Auth Token is expired
 export default class TokenExpired extends Error {
   message: string;
   details: any;

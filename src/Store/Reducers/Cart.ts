@@ -6,6 +6,7 @@ const initialState = {
   errors: { getCart: false },
 } as CartState;
 
+// Reducer for Cart State
 export const cartReducer: CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.GET_CART:
