@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../Store/Actions/Cart';
+import { addToCart, removeFromCart } from '../Store/Actions/Cart';
 import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import { Product } from '../types/Product';
 
@@ -24,19 +24,27 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const removeAllClicked = () => {
+    dispatch(removeFromCart(product.id, true));
+  };
+
+  const addClicked = () => {
+    dispatch(addToCart(product.id));
+  };
+
   const removeClicked = () => {
-    dispatch(removeFromCart(product!.id, true));
+    dispatch(removeFromCart(product.id));
   };
 
   return (
     <Card className={classes.root}>
       <CardMedia
         component="img"
-        alt="Contemplative Reptile"
+        alt={product.title}
         height="140"
         style={{ width: '140px' }}
         image={product?.imagePath}
-        title="Contemplative Reptile"
+        title={product.title}
       />
       <CardContent className={classes.card}>
         <Box
@@ -63,16 +71,21 @@ const CartProduct: React.FC<Props> = ({ product }: Props) => {
       </CardContent>
       <CardActions style={{ width: '300px' }}>
         <Box display={'flex'} alignItems={'center'}>
-          <AddCircle />
-          <Typography className={classes.quantity}>1</Typography>
-          <RemoveCircle />
+          <AddCircle onClick={addClicked} className={classes.actionIcons} />
+          <Typography className={classes.quantity}>
+            {product.quantity}
+          </Typography>
+          <RemoveCircle
+            onClick={removeClicked}
+            className={classes.actionIcons}
+          />
         </Box>
         <Button
           disableElevation
           variant={'contained'}
           style={{ marginLeft: 'auto' }}
           color={'secondary'}
-          onClick={removeClicked}
+          onClick={removeAllClicked}
         >
           Remove
         </Button>
@@ -102,6 +115,9 @@ const useStyles = makeStyles((theme: Theme) =>
     quantity: {
       marginLeft: 4,
       marginRight: 4,
+    },
+    actionIcons: {
+      cursor: 'pointer',
     },
   }),
 );
