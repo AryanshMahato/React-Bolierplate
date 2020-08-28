@@ -17,6 +17,7 @@ import { AccountCircle, ShoppingCart } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { logOutUser } from '../../Store/Actions/User';
 import { useHistory } from 'react-router';
+import { Cart } from '../../Containers';
 
 interface DispatchProps {
   logOut: () => void;
@@ -105,11 +106,12 @@ const ProductsNavbar: React.FC<Props> = ({ logOut }: Props) => {
               horizontal: 'center',
             }}
           >
-            <Box m={2} width={350}>
+            <Box m={2} width={'90vw'} maxWidth={800}>
               <Typography component={'h2'} className={classes.cartAnnotation}>
                 Cart
               </Typography>
               <Divider />
+              <Cart closePopper={cartClose} />
             </Box>
           </Popover>
         </div>

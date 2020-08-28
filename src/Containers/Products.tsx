@@ -3,10 +3,14 @@ import { Box } from '@material-ui/core';
 import { ProductCard } from '../Components';
 import { PRODUCTS } from '../Constants';
 import { AddToCartFunction } from '../types/Product';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Store/Actions/Cart';
 
 const Products = () => {
+  const dispatch = useDispatch();
+
   const addToCartClicked: AddToCartFunction = (productId) => {
-    console.log(productId);
+    dispatch(addToCart(productId));
   };
 
   return (

@@ -2,7 +2,17 @@ import { Product } from './Product';
 
 export interface Cart {
   id: string;
-  name: string;
+  email: string;
 
-  products?: Product[];
+  products?: Array<Omit<Product, 'imagePath'>>;
+}
+
+export interface AddToCartValues {
+  userId: string;
+  productId: string;
+}
+export interface RemoveFromCartValues {
+  userId: string;
+  productId: string;
+  total?: boolean;
 }

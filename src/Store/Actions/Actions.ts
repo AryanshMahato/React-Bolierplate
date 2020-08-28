@@ -7,6 +7,7 @@ import {
 import { ActionFunction, ActionFunctionNoPayload } from '../../types/Redux';
 import { Actions } from '../../types/Redux/Actions';
 import { User } from '../../types/User';
+import { Cart } from '../../types/Cart';
 
 export const loginAction: ActionFunction<UserLoginPayload> = (payload) => ({
   type: Actions.LOGIN,
@@ -42,4 +43,25 @@ export const tokenExpiredAction: ActionFunctionNoPayload = () => ({
 
 export const clearUserErrors: ActionFunctionNoPayload = () => ({
   type: Actions.CLEAR_USER_ERRORS,
+});
+
+//! CART
+
+export const getCartAction: ActionFunction<Cart> = (payload) => ({
+  type: Actions.GET_CART,
+  payload,
+});
+
+export const addToCartAction: ActionFunction<Cart> = (payload) => ({
+  type: Actions.ADD_TO_CART,
+  payload,
+});
+
+export const removeFromCartAction: ActionFunction<Cart> = (payload) => ({
+  type: Actions.REMOVE_FROM_CART,
+  payload,
+});
+
+export const clearCartAction: ActionFunctionNoPayload = () => ({
+  type: Actions.CLEAR_CART,
 });

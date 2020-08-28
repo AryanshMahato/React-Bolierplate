@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { ReduxState } from './types/Redux';
 import { getUser } from './Store/Actions/User';
+import { getCart } from './Store/Actions/Cart';
 
 const App: React.FC = () => {
   const { replace } = useHistory();
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       if (!name && !email) {
         console.log({ name, email });
         dispatch(getUser());
+        dispatch(getCart());
       }
     }
   }, [name, email]);

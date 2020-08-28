@@ -21,5 +21,5 @@ export type CartReducer = (
 // PAYLOAD TYPES
 
 interface GetCartPayload {
-  products: Product;
+  products: Product[];
 }
