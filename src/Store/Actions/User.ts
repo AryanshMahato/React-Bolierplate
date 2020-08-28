@@ -1,13 +1,21 @@
 import { UserLoginValues, UserSignUpValues } from '../../types/User';
 import {
   clearUserErrors,
+  getUserAction,
   loginAction,
   logOutAction,
   setUserErrorAction,
   signUpAction,
+  tokenExpiredAction,
+  userNotFoundAction,
 } from './Actions';
 import { UserService } from '../../Services';
-import { AlreadyExists, NotFound, WrongCredentials } from '../../Errors';
+import {
+  AlreadyExists,
+  NotFound,
+  TokenExpired,
+  WrongCredentials,
+} from '../../Errors';
 
 export const loginUser = (loginValues: UserLoginValues) => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
@@ -71,8 +79,32 @@ export const signUpUser = (signUpValues: UserSignUpValues) => {
 
 export const logOutUser = () => {
   return async (dispatch: (actions: any) => void): Promise<void> => {
-    localStorage.removeItem('idToken');
+    localStorage.clear();
 
     dispatch(logOutAction());
+  };
+};
+
+export const getUser = () => {
+  return async (dispatch: (actions: any) => void): Promise<void> => {
+    try {
+      const email = localStorage.getItem('email');
+
+      if (email) {
+        const data = await UserService.getUser(email);
+
+        if (data) return dispatch(getUserAction(data));
+      }
+      dispatch(logOutAction());
+    } catch (e) {
+      if (e instanceof NotFound) {
+        localStorage.removeItem('idToken');
+        dispatch(userNotFoundAction());
+      }
+      if (e instanceof TokenExpired) {
+        localStorage.removeItem('idToken');
+        dispatch(tokenExpiredAction());
+      }
+    }
   };
 };

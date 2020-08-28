@@ -10,7 +10,7 @@ type UserAPI = (config?: config) => AxiosInstance;
 const userAPI: UserAPI = (config) => {
   // Having authorization as default value
   let headers: { authorization?: string } = {
-    authorization: 'Bearer ' + localStorage.getItem('idToken'),
+    authorization: localStorage.getItem('idToken')!,
   };
 
   // If withAuthorization is false then headers will be empty object

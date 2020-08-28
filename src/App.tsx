@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Routes from './Routes';
-import { BrowserRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { ReduxState } from './types/Redux';
+import { getUser } from './Store/Actions/User';
 
 const App: React.FC = () => {
-  // Application Entry Point
-  return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+  const { replace } = useHistory();
+  const dispatch = useDispatch();
+  const { name, email, errors } = useSelector(
+    (state: ReduxState) => state.user,
+    shallowEqual,
   );
+
+  useEffect(() => {
+    // If IdToken is true and email or name is not there in redux state
+    if (localStorage.getItem('idToken')) {
+      // Get User data from API
+      if (!name && !email) {
+        console.log({ name, email });
+        dispatch(getUser());
+      }
+    }
+  }, [name, email]);
+
+  useEffect(() => {
+    if (errors.tokenExpired) replace('/verify');
+  }, [errors.tokenExpired]);
+
+  // Application Entry Point
+  return <Routes />;
 };
 
 export default App;

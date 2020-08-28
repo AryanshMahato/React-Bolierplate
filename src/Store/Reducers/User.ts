@@ -14,6 +14,8 @@ const initialState = {
       email: '',
       password: '',
     },
+    tokenExpired: false,
+    userNotFound: false,
   },
 } as UserState;
 
@@ -36,6 +38,28 @@ export const userReducer: UserReducer = (state = initialState, action) => {
         ...state,
         email: initialState.email,
         name: initialState.name,
+      };
+    case Actions.GET_USER:
+      return {
+        ...state,
+        email: action.payload.email,
+        name: action.payload.name,
+      };
+    case Actions.TOKEN_EXPIRED:
+      return {
+        ...initialState,
+        errors: {
+          ...initialState.errors,
+          tokenExpired: true,
+        },
+      };
+    case Actions.USER_NOT_FOUND:
+      return {
+        ...initialState,
+        errors: {
+          ...initialState.errors,
+          userNotFound: true,
+        },
       };
     case Actions.SET_USER_ERROR:
       return {

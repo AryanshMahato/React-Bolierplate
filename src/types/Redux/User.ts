@@ -16,6 +16,8 @@ export interface UserErrors {
     email?: string;
     password?: string;
   };
+  tokenExpired?: boolean;
+  userNotFound?: boolean;
 }
 
 export type UserReducer = (

@@ -24,21 +24,27 @@ type Props = DispatchProps & StateProps;
 const Verify: React.FC<Props> = ({
   verifyUser: verifyUserRedux,
   errors,
-  email,
+  email: reduxEmail,
   name,
 }: Props) => {
   const classes = useStyles();
   const { replace } = useHistory();
 
+  const idToken = localStorage.getItem('idToken');
+  const email = localStorage.getItem('email');
+
   const verifyUser: VerificationSubmitFunction = (values) => {
     // Calls Login User API with email value from redux
-    verifyUserRedux({ password: values.password, email });
+    // If email is not present in Redux, use email from localStorage
+    if (reduxEmail)
+      return verifyUserRedux({ password: values.password, email: reduxEmail });
+
+    if (email) return verifyUserRedux({ password: values.password, email });
   };
-  const idToken = localStorage.getItem('idToken');
 
   useEffect(() => {
-    // Redirects to login Page if name or email is not in Redux Store
-    if (!name || !email) replace('/login');
+    // Redirects to login Page if email is not in localStorage
+    if (!email) replace('/login');
 
     // If token is true and name, email is stored in Redux Store
     if (idToken) {
@@ -55,9 +61,15 @@ const Verify: React.FC<Props> = ({
       textAlign={'center'}
       mt={'5rem'}
     >
-      <Typography component={'h2'} className={classes.annotation}>
-        {`Hello ${name}, Please login to continue`}
-      </Typography>
+      {name ? (
+        <Typography component={'h2'} className={classes.annotation}>
+          {`Hello ${name}, Please login to continue`}
+        </Typography>
+      ) : (
+        <Typography component={'h2'} className={classes.annotation}>
+          {`Hello, Please login to continue`}
+        </Typography>
+      )}
       <VerificationForm onSubmit={verifyUser} errors={errors} />
     </Box>
   );

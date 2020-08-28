@@ -6,6 +6,7 @@ import {
 } from '../../types/Redux/User';
 import { ActionFunction, ActionFunctionNoPayload } from '../../types/Redux';
 import { Actions } from '../../types/Redux/Actions';
+import { User } from '../../types/User';
 
 export const loginAction: ActionFunction<UserLoginPayload> = (payload) => ({
   type: Actions.LOGIN,
@@ -24,6 +25,19 @@ export const setUserErrorAction: ActionFunction<UserErrors> = (payload) => ({
 
 export const logOutAction: ActionFunctionNoPayload = () => ({
   type: Actions.LOG_OUT,
+});
+
+export const getUserAction: ActionFunction<User> = (payload) => ({
+  type: Actions.GET_USER,
+  payload,
+});
+
+export const userNotFoundAction: ActionFunctionNoPayload = () => ({
+  type: Actions.USER_NOT_FOUND,
+});
+
+export const tokenExpiredAction: ActionFunctionNoPayload = () => ({
+  type: Actions.TOKEN_EXPIRED,
 });
 
 export const clearUserErrors: ActionFunctionNoPayload = () => ({
