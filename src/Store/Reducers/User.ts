@@ -4,6 +4,7 @@ import { Actions } from '../../types/Redux/Actions';
 const initialState = {
   email: '',
   name: '',
+  cartId: '',
   errors: {
     signUp: {
       name: '',
@@ -26,6 +27,7 @@ export const userReducer: UserReducer = (state = initialState, action) => {
         ...state,
         email: action.payload.email,
         name: action.payload.name,
+        cartId: action.payload.cartId,
       };
     case Actions.SIGN_UP:
       return {
@@ -44,6 +46,7 @@ export const userReducer: UserReducer = (state = initialState, action) => {
         ...state,
         email: action.payload.email,
         name: action.payload.name,
+        cartId: action.payload.cartId,
       };
     case Actions.TOKEN_EXPIRED:
       return {

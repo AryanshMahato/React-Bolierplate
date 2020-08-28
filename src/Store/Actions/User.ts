@@ -26,7 +26,13 @@ export const loginUser = (loginValues: UserLoginValues) => {
       const user = await UserService.loginUser(loginValues);
 
       if (user) {
-        dispatch(loginAction({ name: user.name, email: user.email }));
+        dispatch(
+          loginAction({
+            name: user.name,
+            email: user.email,
+            cartId: user.cartId,
+          }),
+        );
 
         dispatch(clearUserErrors());
       }

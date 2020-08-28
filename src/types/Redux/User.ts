@@ -3,6 +3,7 @@ import { Actions } from './Actions';
 export interface UserState {
   name: string;
   email: string;
+  cartId: string;
   errors: UserErrors;
 }
 
@@ -33,6 +34,7 @@ export type UserReducer = (
 export interface UserLoginPayload {
   name: string;
   email: string;
+  cartId: string;
 }
 
 export interface UserSignUpPayload {
