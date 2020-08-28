@@ -1,6 +1,7 @@
 import { CartService } from '../../Services';
 import {
   addToCartAction,
+  clearCartAction,
   getCartAction,
   logOutAction,
   removeFromCartAction,
@@ -20,6 +21,7 @@ export const getCart = () => {
         if (data) return dispatch(getCartAction(data));
       }
       dispatch(logOutAction());
+      dispatch(clearCartAction());
     } catch (e) {
       if (e instanceof NotFound) {
         localStorage.removeItem('idToken');
@@ -27,6 +29,7 @@ export const getCart = () => {
       }
       if (e instanceof TokenExpired) {
         localStorage.removeItem('idToken');
+        dispatch(clearCartAction());
         dispatch(tokenExpiredAction());
       }
     }
@@ -47,6 +50,7 @@ export const addToCart = (productId: number) => {
         if (data) return dispatch(addToCartAction(data));
       }
       dispatch(logOutAction());
+      dispatch(clearCartAction());
     } catch (e) {
       if (e instanceof NotFound) {
         localStorage.removeItem('idToken');
@@ -54,6 +58,7 @@ export const addToCart = (productId: number) => {
       }
       if (e instanceof TokenExpired) {
         localStorage.removeItem('idToken');
+        dispatch(clearCartAction());
         dispatch(tokenExpiredAction());
       }
     }
@@ -75,6 +80,7 @@ export const removeFromCart = (productId: number, total?: boolean) => {
         if (data) return dispatch(removeFromCartAction(data));
       }
       dispatch(logOutAction());
+      dispatch(clearCartAction());
     } catch (e) {
       if (e instanceof NotFound) {
         localStorage.removeItem('idToken');
@@ -82,6 +88,7 @@ export const removeFromCart = (productId: number, total?: boolean) => {
       }
       if (e instanceof TokenExpired) {
         localStorage.removeItem('idToken');
+        dispatch(clearCartAction());
         dispatch(tokenExpiredAction());
       }
     }

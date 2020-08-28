@@ -1,5 +1,6 @@
 import { UserLoginValues, UserSignUpValues } from '../../types/User';
 import {
+  clearCartAction,
   clearUserErrors,
   getUserAction,
   loginAction,
@@ -88,6 +89,7 @@ export const logOutUser = () => {
     localStorage.clear();
 
     dispatch(logOutAction());
+    dispatch(clearCartAction());
   };
 };
 
@@ -102,6 +104,7 @@ export const getUser = () => {
         if (data) return dispatch(getUserAction(data));
       }
       dispatch(logOutAction());
+      dispatch(clearCartAction());
     } catch (e) {
       if (e instanceof NotFound) {
         localStorage.removeItem('idToken');
@@ -109,6 +112,7 @@ export const getUser = () => {
       }
       if (e instanceof TokenExpired) {
         localStorage.removeItem('idToken');
+        dispatch(clearCartAction());
         dispatch(tokenExpiredAction());
       }
     }
