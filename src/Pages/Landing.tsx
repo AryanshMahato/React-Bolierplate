@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { PublicLayout } from '../Global';
 
 const Landing: React.FC = () => {
   const classes = useStyles();
@@ -15,36 +16,38 @@ const Landing: React.FC = () => {
   };
 
   return (
-    <Box
-      display={'flex'}
-      height={'80vh'}
-      justifyContent={'center'}
-      alignItems={'center'}
-      flexDirection={'column'}
-      textAlign={'center'}
-    >
-      <Typography variant={'h2'} className={classes.annotation}>
-        Welcome to the Ecommerce Website
-      </Typography>
-      <Box className={classes.buttons}>
-        <Button
-          onClick={signUpClicked}
-          variant={'contained'}
-          color={'primary'}
-          data-testid={'signUpButton'}
-        >
-          Sign Up
-        </Button>
-        <Button
-          onClick={loginClicked}
-          variant={'contained'}
-          color={'primary'}
-          data-testid={'loginButton'}
-        >
-          Login
-        </Button>
+    <PublicLayout hideNavbar={true}>
+      <Box
+        display={'flex'}
+        height={'80vh'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        flexDirection={'column'}
+        textAlign={'center'}
+      >
+        <Typography variant={'h2'} className={classes.annotation}>
+          Welcome to the Ecommerce Website
+        </Typography>
+        <Box className={classes.buttons}>
+          <Button
+            onClick={signUpClicked}
+            variant={'contained'}
+            color={'primary'}
+            data-testid={'signUpButton'}
+          >
+            Sign Up
+          </Button>
+          <Button
+            onClick={loginClicked}
+            variant={'contained'}
+            color={'primary'}
+            data-testid={'loginButton'}
+          >
+            Login
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </PublicLayout>
   );
 };
 

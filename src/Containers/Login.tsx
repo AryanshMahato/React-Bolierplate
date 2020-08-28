@@ -22,14 +22,15 @@ type Props = DispatchProps & StateProps;
 
 const Login: React.FC<Props> = ({ loginUser, errors, name, email }: Props) => {
   const { replace } = useHistory();
+  const idToken = localStorage.getItem('idToken');
 
   useEffect(() => {
     // If token is true and name, email is stored in Redux Store
-    if (localStorage.getItem('idToken')) {
+    if (idToken) {
       // Redirect to Products Page
       if (name && email) replace('/products');
     }
-  }, [name, email]);
+  }, [name, email, idToken]);
 
   return (
     <Box
