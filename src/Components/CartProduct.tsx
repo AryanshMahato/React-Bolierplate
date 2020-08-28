@@ -95,11 +95,15 @@ const CartProduct: React.FC<Props> = ({ id }: Props) => {
   );
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: 12,
       display: 'flex',
+      [theme.breakpoints.down('sm')]: {
+        flexFlow: 'column',
+        alignItems: 'center',
+      },
     },
     card: {
       marginLeft: 16,
