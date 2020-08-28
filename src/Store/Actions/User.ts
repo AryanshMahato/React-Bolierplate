@@ -2,6 +2,7 @@ import { UserLoginValues, UserSignUpValues } from '../../types/User';
 import {
   clearUserErrors,
   loginAction,
+  logOutAction,
   setUserErrorAction,
   signUpAction,
 } from './Actions';
@@ -65,5 +66,13 @@ export const signUpUser = (signUpValues: UserSignUpValues) => {
           }),
         );
     }
+  };
+};
+
+export const logOutUser = () => {
+  return async (dispatch: (actions: any) => void): Promise<void> => {
+    localStorage.removeItem('idToken');
+
+    dispatch(logOutAction());
   };
 };

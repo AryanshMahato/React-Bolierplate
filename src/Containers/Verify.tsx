@@ -40,7 +40,6 @@ const Verify: React.FC<Props> = ({
     // Redirects to login Page if name or email is not in Redux Store
     if (!name || !email) replace('/login');
 
-    console.log({ idToken, name, email });
     // If token is true and name, email is stored in Redux Store
     if (idToken) {
       // Redirect to Products Page

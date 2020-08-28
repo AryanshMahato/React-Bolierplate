@@ -1,5 +1,6 @@
 export enum Actions {
   LOGIN = 'LOGIN',
+  LOG_OUT = 'LOG_OUT',
   SIGN_UP = 'SIGN_UP',
   CLEAR_USER_ERRORS = 'CLEAR_USER_ERRORS',
   SET_USER_ERROR = 'SET_USER_ERROR',

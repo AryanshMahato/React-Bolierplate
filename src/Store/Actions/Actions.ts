@@ -22,7 +22,10 @@ export const setUserErrorAction: ActionFunction<UserErrors> = (payload) => ({
   payload,
 });
 
-// In Payload specify which error you want to be removed
-export const clearUserErrors: ActionFunctionNoPayload<UserErrors> = () => ({
+export const logOutAction: ActionFunctionNoPayload = () => ({
+  type: Actions.LOG_OUT,
+});
+
+export const clearUserErrors: ActionFunctionNoPayload = () => ({
   type: Actions.CLEAR_USER_ERRORS,
 });
